@@ -24,7 +24,7 @@ document.body.appendChild(renderer.domElement);
 
 // 加载模型
 const loader = new GLTFLoader();
-loader.load("models/aris.glb", (gltf) => {
+loader.load("/HTML/models/aris.glb", (gltf) => {
   scene.add(gltf.scene);
 });
 
@@ -43,7 +43,7 @@ camera.lookAt(0, 0, 0); // 设置相机看向模型
 // 渲染场景
 function animate() {
   requestAnimationFrame(animate); // 循环调用动画函数
-  mixer.update(0.01); // 更新动画
+  mixer.update(0.001); // 更新动画
   renderer.render(scene, camera, light); // 渲染场景
 }
 animate();
