@@ -24,13 +24,13 @@ document.body.appendChild(renderer.domElement);
 
 // 加载模型
 const loader = new GLTFLoader();
-loader.load("/HTML/models/aris.glb", (gltf) => {
+loader.load("models/aris.glb", (gltf) => {
   scene.add(gltf.scene);
 });
 
 //动画
 const mixer = new AnimationMixer(scene);
-loader.load("/HTML/models/aris.glb", (gltf) => {
+loader.load("models/aris.glb", (gltf) => {
   const animations = gltf.animations; // 获取模型的动画数组
   mixer.clipAction(animations[0]).play(); // 播放第一个动画
 });
