@@ -30,7 +30,7 @@ loader.load("/HTML/models/aris.glb", (gltf) => {
 
 //动画
 const mixer = new AnimationMixer(scene);
-loader.load("models/aris.glb", (gltf) => {
+loader.load("/HTML/models/aris.glb", (gltf) => {
   const animations = gltf.animations; // 获取模型的动画数组
   mixer.clipAction(animations[0]).play(); // 播放第一个动画
 });
@@ -43,7 +43,7 @@ camera.lookAt(0, 0, 0); // 设置相机看向模型
 // 渲染场景
 function animate() {
   requestAnimationFrame(animate); // 循环调用动画函数
-  mixer.update(0.001); // 更新动画
+  mixer.update(0.01); // 更新动画
   renderer.render(scene, camera, light); // 渲染场景
 }
 animate();
