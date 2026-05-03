@@ -24,7 +24,7 @@ document.body.appendChild(renderer.domElement);
 
 // 加载模型
 const loader = new GLTFLoader();
-loader.load("models/aris.glb", (gltf) => {
+loader.load("/HTML/models/aris.glb", (gltf) => {
   scene.add(gltf.scene);
 });
 
