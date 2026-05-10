@@ -1,6 +1,7 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/loaders/GLTFLoader.js";
 import { AnimationMixer } from "https://cdn.jsdelivr.net/npm/three@0.183.0/build/three.module.js";
+import { EXRLoader } from "https://cdn.jsdelivr.net/npm/three@0.183.0/examples/jsm/loaders/EXRLoader.js";
 
 // 创建场景
 const scene = new THREE.Scene();
@@ -12,9 +13,15 @@ const camera = new THREE.PerspectiveCamera(
   0.1, // 近平面（最近距离）
   1000, // 远平面（最远距离）
 );
-//创建光照
-const light = new THREE.AmbientLight(0xffffff, 3); // 白色光，强度为3
-scene.add(light);
+
+//HDR天空
+const hdrLoader = new EXRLoader();
+hdrLoader.load("hdr/skyn1.exr", function (texture) {
+  texture.mapping = THREE.EquirectangularReflectionMapping; // 设置纹理映射方式
+  texture.encoding = THREE.sRGBEncoding; // 设置纹理编码方式
+  scene.background = texture; // 将HDR纹理设置为场景背景
+  scene.environment = texture; // 将HDR纹理设置为环境光照
+});
 
 //创建渲染器
 const renderer = new THREE.WebGLRenderer();
@@ -43,6 +50,6 @@ camera.lookAt(0, 0, 0); // 设置相机看向模型
 function animate() {
   requestAnimationFrame(animate); // 循环调用动画函数
   mixer.update(0.01); // 更新动画
-  renderer.render(scene, camera, light); // 渲染场景
+  renderer.render(scene, camera); // 渲染场景
 }
 animate();
