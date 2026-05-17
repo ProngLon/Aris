@@ -69,7 +69,6 @@ function createPart(parentObject, position, title, description) {
 }
 
 // 加载模型
-/*
 const loader = new GLTFLoader();
 loader.load("models/aris.glb", (gltf) => {
   scene.add(gltf.scene);
@@ -83,11 +82,6 @@ loader.load("models/aris.glb", (gltf) => {
       child.receiveShadow = true; // 启用接收阴影
     }
   });
-});
-*/
-const loader = new GLTFLoader();
-loader.load("models/aris.glb", (gltf) => {
-  scene.add(gltf.scene);
 });
 
 //射线交互
